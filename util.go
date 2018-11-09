@@ -60,6 +60,9 @@ func (sw *Sweeper) Next() (image RawImage, label Label, present bool) {
 	if sw.i >= len(sw.set.Images) {
 		return nil, 0, false
 	}
+	defer func() {
+		sw.i++	
+	}()
 	return sw.set.Images[sw.i], sw.set.Labels[sw.i], true
 }
 
